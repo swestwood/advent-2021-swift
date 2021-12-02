@@ -2,9 +2,9 @@ import Foundation
 
 func part1(nums: [Int]) {
     var increases = 0
-    var previous = -1 // all integers in the file are positive
+    var previous: Int?
     for num in nums {
-        if previous > 0, num > previous {
+        if previous != nil, num > previous! {
             increases += 1
         }
         previous = num
@@ -18,12 +18,12 @@ func part2(nums: [Int]) {
     var windowSum = 0
     for (i, num) in nums.enumerated() {
         let prevWindowSum = windowSum
-        if i - WINDOW_SIZE >= 0 {
-            windowSum -= nums[i - WINDOW_SIZE]
-        }
         windowSum += num
-        if i >= WINDOW_SIZE, windowSum > prevWindowSum {
-            increases += 1
+        if i >= WINDOW_SIZE {
+            windowSum -= nums[i - WINDOW_SIZE]
+            if windowSum > prevWindowSum {
+                increases += 1
+            }
         }
     }
     print("Part 2 sliding window increases: \(increases)")
