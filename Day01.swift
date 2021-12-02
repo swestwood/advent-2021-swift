@@ -30,7 +30,7 @@ func part2(nums: [Int]) {
 }
 
 let contents = try! String(contentsOfFile: "./data/day01.txt")
-let nums = contents.components(separatedBy: .newlines).compactMap(Int.init)
+let nums = contents.components(separatedBy: .newlines).map(Int.init)
 print("read data")
 part1(nums: nums)
 part2(nums: nums)
